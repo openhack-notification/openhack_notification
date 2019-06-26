@@ -35,18 +35,18 @@ test:
   pool: 5
  
 ## AWS 서버 설정
-# production:
-#   adapter: postgresql
-#   host: localhost
-#   encoding: utf8
-#   sslmode: allow
-#   database: <%= ENV["DB_NAME"] %>_production
-#   pool: 5
-#   username: <%= ENV["DB_NAME"] %>
-#   password: <%= ENV["DB_PASSWD"] %>
+production:
+  adapter: postgresql
+  host: localhost
+  encoding: utf8
+  sslmode: allow
+  database: <%= ENV["DB_NAME"] %>_production
+  pool: 5
+  username: <%= ENV["DB_NAME"] %>
+  password: <%= ENV["DB_PASSWD"] %>
 
 ## Heroku 서버 설정
-production:
-  <<: *default
-  adapter: postgresql
-  encoding: unicode
+# production:
+#   <<: *default
+#   adapter: postgresql
+#   encoding: unicode
