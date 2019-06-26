@@ -4,14 +4,9 @@
   }
 </style>
 
-<div class="container">
-  <div class="d-none d-md-block" style="margin-top: 200px;"></div>
-  <div class="d-md-none" style="margin-top:70px;"></div>
+<div class="container login-container">
   <div class="row login_box">
-    <div class="col-md-6" style="line-height: 250px; text-align: center;">
-      <img src="<%= asset_path '' %>">
-    </div>
-    <div class="col-md-6">
+    <div class="col-md-12 input-login">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <% if alert %>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -29,15 +24,15 @@
           </div>
         <% end %>
       
-        <div class="col-md-12" style="margin-top: 30px; margin-left: -10px;">
+        <div class="col-md-12" style="margin-top: 30px;">
           <label class="form_1">
-            <%= f.email_field :email, id: "form_1", autofocus: true, autocomplete: "email", placeholder: " ", value: "kbs4674@naver.com" %>
+            <%= f.email_field :email, id: "form_1", autofocus: true, autocomplete: "email", placeholder: " " %>
             <span class="label">이메일</span>
           </label>
         </div>
         
-        <div class="col-md-12" style="margin-top: 30px; margin-left: -10px;">
-          <label class="form_2">
+        <div class="col-md-12">
+          <label class="form_2 input-password">
             <%= f.password_field :password, class: "devise_noborder", id: "form_2", autofocus: true, autocomplete: "off", placeholder: " ", value: "" %>
             <span class="label">암호</span>
           </label>
@@ -50,19 +45,14 @@
           </div>
         <% end -%>
       
-        <div class="actions" style="margin-top: 20px">
-          <%= f.submit "로그인", class: "btn btn-sm btn-info" %>
+        <div class="actions">
+          <%= f.submit "로그인", class: "btn btn-sm btn-info login-btn" %>
         </div>
       <% end %>
     </div>
     
-    <div class="col-md-12" align="center" style="margin-top: 30px">
-      <%= link_to " kbs4674@naver.com", "mailto: sunglobal12@naver.com", class: "far fa-envelope", style: "color: black; text-decoration: none;" %>
+    <div align="center" class='shared-info'>
+      <%= render "devise/shared/info" %>
     </div>
-    
-  </div>
-  
-  <div style="margin-top: 30px" align="center">
-    <%= render "devise/shared/info" %>
   </div>
 </div>

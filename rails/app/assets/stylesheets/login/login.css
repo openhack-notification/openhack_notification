@@ -848,3 +848,49 @@
 .form_12 input:focus + span + .border {
     transform: scaleX(1);
 }
+
+.login-container {
+    display: grid;
+    grid-template-columns: auto 300px;
+    grid-template-areas: 
+      "intro login";
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-width: 100vw;
+    height: 100vh;
+}
+
+.login_box, .shared-info {
+    grid-area: login;
+    margin: 0;
+}
+
+div.login_box {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.shared-info {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.input-login {
+    padding: 0;
+    height: fit-content;
+}
+
+.field {
+    margin-left: 15px;
+}
+
+.input-password {
+    margin-top: 20px;
+}
+
+.login-btn {
+    width: 100%;
+}
