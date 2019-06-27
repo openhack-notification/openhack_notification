@@ -319,13 +319,13 @@ a:hover, a:active, a:focus {
 
 /* Nav Meu Styling */
 .nav-menu a {
-  padding: 0 8px 10px 8px;
+  padding: 5px;
   text-decoration: none;
   display: inline-block;
   color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   outline: none;
 }
 
@@ -364,6 +364,46 @@ a:hover, a:active, a:focus {
 
 .nav-menu ul ul {
   margin: 0;
+}
+
+.header-menu {
+  color: #18d26e;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.header-menu:hover {
+  opacity: 0.75;
+}
+
+.header-menu-content {
+  position: fixed;
+  width: 250px;
+  height: 100vh;
+  top: 0;
+  right: -251px;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: all 0.2s ease-in-out;
+  /*animation-duration: 0.2s;*/
+  /*animation-name: pushmenu;*/
+}
+
+.header-menu-content.active {
+  right: 0;
+}
+
+.header-menu-content:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+@keyframes pushmenu {
+  from {
+    right: -251px;
+  }
+
+  to {
+    right: 0;
+  }
 }
 
 /* Mobile Nav Toggle */
