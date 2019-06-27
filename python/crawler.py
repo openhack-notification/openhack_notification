@@ -2,6 +2,18 @@ from selenium import webdriver
 import tldextract
 
 
+def start():
+    global driver
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    options.add_argument('window-size=1920x1080')
+    options.add_argument("disable-gpu")
+    options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
+
+    driver = webdriver.Chrome('chromedriver', chrome_options=options)
+    driver.implicitly_wait(3)
+
+
 def get_domain(url):
     extracted = tldextract.extract(url)
     domain = "{}.{}".format(extracted.domain, extracted.suffix)
@@ -22,16 +34,6 @@ def get_rule(a, b):
 
 
 def crawl(url, rule):
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    options.add_argument('window-size=1920x1080')
-    options.add_argument("disable-gpu")
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-
-    driver = webdriver.Chrome('chromedriver', chrome_options=options)
-    driver.implicitly_wait(3)
-
     posts = []
     driver.get(url)
     for i in driver.find_elements_by_xpath(str(rule)):
@@ -64,16 +66,6 @@ def get_xpath_by_element(web_element):
 
 
 def find_board_info(url, str1, str2):
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    options.add_argument('window-size=1920x1080')
-    options.add_argument("disable-gpu")
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-
-    driver = webdriver.Chrome('chromedriver', chrome_options=options)
-    driver.implicitly_wait(3)
-
     driver.get(url)
 
     element1 = driver.find_elements_by_xpath("//*[contains(text(), '" + str1 + "')]")[0]
@@ -98,14 +90,7 @@ if __name__ == '__main__':
     str1 = '네이버 커넥트재단 부스트캠프'
     str2 = '2019학년도 1학기 학업성적 확인 및 정정요청 기간 …'
 
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    options.add_argument('window-size=1920x1080')
-    options.add_argument("disable-gpu")
-    options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
 
-    driver = webdriver.Chrome('chromedriver', chrome_options=options)
-    driver.implicitly_wait(3)
 
     rule, site_title, domain_title = find_board_info(url, str1, str2)
 
