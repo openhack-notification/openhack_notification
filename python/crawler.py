@@ -9,8 +9,8 @@ def start():
     options.add_argument('window-size=1920x1080')
     options.add_argument("disable-gpu")
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-
-    driver = webdriver.Chrome('chromedriver', chrome_options=options)
+    driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", chrome_options=options)
+    #driver = webdriver.Chrome('chromedriver', chrome_options=options)
     driver.implicitly_wait(3)
 
 
@@ -31,14 +31,29 @@ def get_rule(a, b):
             # print("found!", rule)
             return rule
     print("Error: Can not find rule")
+    return None
 
 
 def crawl(url, rule):
     posts = []
+    links = []
     driver.get(url)
+    
     for i in driver.find_elements_by_xpath(str(rule)):
         posts.append(i.text)
-    return posts
+        links.append(i.get_attribute('href'))
+
+    # 글자가 들어있는 태그에 href에 url이 들어있지 않은 경우 like js or 상위 태그에 href속성
+    if links is None and links[0][:4] != "http":
+        links = []
+        for i in range(len(driver.find_elements_by_xpath(rule))):
+            driver.implicitly_wait(3)
+            driver.find_elements_by_xpath(rule)[i].click()
+            links.append(driver.current_url)
+            driver.back()
+            # driver.execute_script("window.history.go(-1)")
+
+    return posts, links
 
 
 def get_xpath_by_element(web_element):
@@ -90,11 +105,13 @@ if __name__ == '__main__':
     str1 = '네이버 커넥트재단 부스트캠프'
     str2 = '2019학년도 1학기 학업성적 확인 및 정정요청 기간 …'
 
-
+    start()
 
     rule, site_title, domain_title = find_board_info(url, str1, str2)
 
     print("rule: ", rule, "\nsite_title", site_title, "\ndomain_title: ", domain_title)
 
-    for i in crawl(url, rule):
-        print(i)
+    posts, links = crawl(url, rule)
+
+    for i in range(len(posts)):
+        print(i, posts[i], links[i])

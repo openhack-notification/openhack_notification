@@ -27,6 +27,7 @@ def get_conn():
     return conn
 
 def insert_into_bulletin(domain_title):
+    print("insert_into_bulletin")
     conn=get_conn()
     cur = conn.cursor()
     quary = "Select title,id from Bulletins"
@@ -55,6 +56,7 @@ def insert_into_bulletin(domain_title):
 
 
 def insert_into_post(bulletin_id,site_title,url,select_rule):
+    print("insert_into_post")
 
     conn=get_conn()
     cur = conn.cursor()
@@ -122,5 +124,6 @@ if __name__ == '__main__':
     post_id = insert_into_tables(rule,site_title,domain_title,url)
     board_urls = list(zip(boards,urls))
     for elem in board_urls:
+        print(elem)+"\n\n"
         insert_into_crawl_list(post_id,elem[0],elem[1])
     insert_into_tables(rule,site_title, domain_title,url)
