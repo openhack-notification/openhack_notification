@@ -35,10 +35,12 @@ def get_rule(a, b):
 
 def crawl(url, rule):
     posts = []
+    links = []
     driver.get(url)
     for i in driver.find_elements_by_xpath(str(rule)):
         posts.append(i.text)
-    return posts
+        links.append(i.get_attribute('href'))
+    return posts, links
 
 
 def get_xpath_by_element(web_element):
@@ -91,10 +93,12 @@ if __name__ == '__main__':
     str2 = '2019학년도 1학기 학업성적 확인 및 정정요청 기간 …'
 
 
-
+    start()
     rule, site_title, domain_title = find_board_info(url, str1, str2)
 
     print("rule: ", rule, "\nsite_title", site_title, "\ndomain_title: ", domain_title)
 
-    for i in crawl(url, rule):
-        print(i)
+    posts, links = crawl(url, rule)
+
+    for i in range(len(posts)):
+        print(i, posts[i], links[i])
