@@ -12,24 +12,7 @@
         </div>
     </section>
     <nav class="user-sidebar">
-        <div class="user-sidebar-content">
-            <img class="text-logo" src="/images/text-logo.svg" width="80" height="20" />
-            
-            <img class="user-img" src="/images/user.svg" width="30" height="30" />
-            <% if user_signed_in? %>
-                <%= content_tag(:span, " #{current_user.nickname.truncate(10, omission: '...')}", class: "user-name") %>
-                <%= link_to " ", edit_user_registration_path(current_user.id), class: "user-edit" %>
-                <%= link_to "로그아웃", destroy_user_session_path, method: "DELETE", class: "user-logout" %>
-            <% end %>
-            
-            <div class="history-category-wrap">
-                <div class="user-history">히스토리<a class="history-more">더보기</a></div>
-                <ul class="history-list">
-                    <% Subscribe.all.where(user_id: current_user).each do |x| %>
-                        <li class="history-item"><div class="etc"><%= link_to "#{x.post.bulletin.title} | #{x.post.title}", bulletin_posts_path(x.post.bulletin.id) %></div></a></li>
-                    <% end %>
-                </ul>
-            </div>
-        </div>
+      <%= render "devise/shared/sidebar" %>
     </nav>
 </main>
+<%= render "devise/shared/popup" %>

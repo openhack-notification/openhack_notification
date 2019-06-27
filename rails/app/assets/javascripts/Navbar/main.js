@@ -174,6 +174,8 @@ jQuery(document).ready(function( $ ) {
 window.addEventListener(`DOMContentLoaded`, () => {
   onClickHistoryMore();
   hoverHistoryMore();
+  onClickModalBack();
+  onClickSearchButton();
 });
 
 function onClickHistoryMore() {
@@ -203,3 +205,22 @@ function hoverHistoryMore() {
   }, true);
 }
 
+function onClickModalBack() {
+  document.querySelector(`.modal-wrap`).addEventListener(`click`, event => {
+    event.stopPropagation();
+    
+    if(event.target.classList.contains(`modal-wrap`)) {
+      event.target.style.display = `none`;
+    }
+  });
+}
+
+function onClickSearchButton() {
+  document.querySelector(`.search-btn`).addEventListener(`click`, event => {
+    event.stopPropagation();
+    
+    if(event.target.classList.contains(`search-btn`)) {
+      document.querySelector(`.modal-wrap`).style.display = `flex`;
+    }
+  });
+}
