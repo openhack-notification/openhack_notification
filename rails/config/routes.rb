@@ -43,7 +43,9 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :posts
+  resources :posts do
+    resources :crawl_lists
+  end
   
   resources :bulletins do
     # 해시태그

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @crawl_list.title %>
+</p>
+
+<p>
+  <strong>Is message send:</strong>
+  <%= @crawl_list.is_message_send %>
+</p>
+
+<%= link_to 'Edit', edit_crawl_list_path(@crawl_list) %> |
+<%= link_to 'Back', crawl_lists_path %>

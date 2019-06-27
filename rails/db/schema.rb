@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181119095731) do
+ActiveRecord::Schema.define(version: 20190627013807) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "all_notices", force: :cascade do |t|
     t.string "title"
@@ -84,6 +87,15 @@ ActiveRecord::Schema.define(version: 20181119095731) do
     t.index ["sender_id"], name: "index_conversations_on_sender_id"
   end
 
+  create_table "crawl_lists", force: :cascade do |t|
+    t.string "title"
+    t.integer "is_message_send"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id"
+    t.index ["post_id"], name: "index_crawl_lists_on_post_id"
+  end
+
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
     t.integer "impressionable_id"
@@ -113,8 +125,8 @@ ActiveRecord::Schema.define(version: 20181119095731) do
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.string "nickname"
-    t.integer "user_id"
-    t.integer "conversation_id"
+    t.bigint "user_id"
+    t.bigint "conversation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
@@ -123,7 +135,7 @@ ActiveRecord::Schema.define(version: 20181119095731) do
 
   create_table "new_notifications", force: :cascade do |t|
     t.string "content"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "link"
     t.string "from"
     t.datetime "created_at", null: false
@@ -139,7 +151,7 @@ ActiveRecord::Schema.define(version: 20181119095731) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "bulletin_id"
+    t.bigint "bulletin_id"
     t.datetime "deleted_at"
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
@@ -160,13 +172,13 @@ ActiveRecord::Schema.define(version: 20181119095731) do
   end
 
   create_table "posts_tags", id: false, force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
+    t.bigint "post_id"
+    t.bigint "tag_id"
     t.index ["post_id"], name: "index_posts_tags_on_post_id"
     t.index ["tag_id"], name: "index_posts_tags_on_tag_id"
   end
 
-  create_table "read_marks", force: :cascade do |t|
+  create_table "read_marks", id: :serial, force: :cascade do |t|
     t.string "readable_type", null: false
     t.integer "readable_id"
     t.string "reader_type", null: false
@@ -180,7 +192,7 @@ ActiveRecord::Schema.define(version: 20181119095731) do
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
@@ -224,8 +236,8 @@ ActiveRecord::Schema.define(version: 20181119095731) do
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+    t.bigint "user_id"
+    t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
@@ -233,9 +245,9 @@ ActiveRecord::Schema.define(version: 20181119095731) do
 
   create_table "votes", force: :cascade do |t|
     t.string "votable_type"
-    t.integer "votable_id"
+    t.bigint "votable_id"
     t.string "voter_type"
-    t.integer "voter_id"
+    t.bigint "voter_id"
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
@@ -247,4 +259,10 @@ ActiveRecord::Schema.define(version: 20181119095731) do
     t.index ["voter_type", "voter_id"], name: "index_votes_on_voter_type_and_voter_id"
   end
 
+  add_foreign_key "crawl_lists", "posts"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
+  add_foreign_key "posts", "bulletins"
+  add_foreign_key "posts_tags", "posts"
+  add_foreign_key "posts_tags", "tags"
 end
