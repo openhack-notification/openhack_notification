@@ -13,6 +13,86 @@
  *= require_tree .
  *= require_self
  */
+  /* 폰트 */ 
+  @font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
+  
+  .font-coredream {
+    font-family: 'S-CoreDream-2ExtraLight'
+  }
+  
+  .font-title-coredream {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'S-CoreDream-2ExtraLight'
+  }
+  
+  .crawling_add_box {
+    background-color: #FF4555;
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 30px;
+    font-family: S-CoreDream-2ExtraLight;
+    height: 300px;
+    postion: relative;
+    margin-top: -150px;
+  }
+  
+  .crawling_add_box:hover {
+    box-shadow: 4px 4px 1px rgba(145, 145, 145, 0.37);
+  }
+  
+  .crawling_box {
+    background-color: white;
+    padding: 20px;
+    margin-top: 30px;
+    border: 2px solid #d3d3d3;
+    height: 300px;
+  }
+  
+  .crawling_box:hover {
+    box-shadow: 4px 4px 1px rgba(145, 145, 145, 0.37);
+  }
+  
+  .text-none {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .subscribe-submit {
+    background-color: #14c56b;
+    color: white;
+    font-weight: bold;
+    border: 0px;
+    padding: 5px 15px;
+    border-radius: 5px;
+  }
+  
+  .subscribe_on {
+    background-color: #fb2626;
+    color: white;
+    border: 0px solid black;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    //margin-top: 43px;
+  }
+  
+  .subscribe_off {
+    background-color: white;
+    color: #fb2626;
+    border: 2px solid #fb2626;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    //margin-top: 43px;
+  }
+  
+  .text-none:hover
+  {
+    color: white;
+    text-decoration: none;
+  }
+ 
  .login_box {
     background-color: white;
     box-shadow: 8px 8px 1px 1px rgba(0, 0, 0, 0.16);
@@ -69,7 +149,7 @@
     color: white;
     font-size: 30px;
     text-decoration: none;
-    padding: 150px 0px 80px 0px;
+    padding: 200px 0px 250px 0px;
     text-align: center;
   }
   
@@ -810,4 +890,3 @@ main#main {
     }
   }
 }
-
