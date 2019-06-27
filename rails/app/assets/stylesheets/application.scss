@@ -323,7 +323,7 @@ main#main {
   .search-section {
     position: relative;
     width: 1100px;
-    max-width: 70vw;
+    max-width: 55vw;
     
     .search-btn {
       transition: all 0.2s ease-in-out;
@@ -342,17 +342,15 @@ main#main {
       color: black;
       font-family: 'S-CoreDream-2ExtraLight';
       font-size: 2.5rem;
+      word-break: keep-all;
+      z-index: 10;
     }
   
     .search-section-subtitle {
-      position: absolute;
-      top: 36%;
-      left: 11%;
       font-family: 'S-CoreDream-4Regular';
       color: black;
-      width: auto;
-      min-width: 300px;
       font-size: 2.5rem;
+      z-index: 10;
     }
     
     .search-wrap {
@@ -367,6 +365,7 @@ main#main {
       margin: 0 11%;
       padding-bottom: 10px;
       justify-content: space-between;
+      z-index: 10;
       
       .search-input-text {
         border: 0;
@@ -378,7 +377,12 @@ main#main {
     }
   }
 
+  .user-sidebar * {
+    user-select: none;
+  }
+
   .user-sidebar {
+    overflow: scroll;
     background-image: url(/images/main-img.jpg);
     background-size: cover;
     background-position: 0px 0px;
@@ -389,13 +393,23 @@ main#main {
       width: 260px;
       height: 100vh;
       margin-left: auto;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: #212529d4;
     }
     
     .text-logo {
       position: absolute;
       top: 34px;
       left: 33px;
+    }
+    
+    .user-edit {
+      left: 30px;
+      top: 140px;
+      width: 95px;
+      height: 40px;
+      position: absolute;
+      cursor: pointer;
+      z-index: 20;
     }
     
     .user-img {
@@ -425,8 +439,7 @@ main#main {
     }
     
     .user-logout:hover {
-      transform: scale(1.2);
-      color: cornflowerblue;
+      color: #aaa;
       text-decoration: none;
     }
     
@@ -435,7 +448,7 @@ main#main {
       top: 200px;
       left: 0;
       width: 100%;
-      height: calc(100% - 200px);
+      height: calc(100% - 240px);
     }
     
     .user-history {
@@ -448,10 +461,9 @@ main#main {
       width: 100%;
       font-size: 17px;
       height: 50px;
-      padding-left: 49px;
+      padding-left: 39px;
       align-items: center;
-      border-top: 1px solid hsla(0, 0%, 80%, 1);
-      border-bottom: 1px solid hsla(0, 0%, 80%, 1);
+      cursor: pointer;
       user-select: none;
     }
     
@@ -483,13 +495,13 @@ main#main {
     
     .history-list li a:hover {
       text-decoration: none;
-      color: cornflowerblue;
+      color: #aaa;
       cursor: pointer;
     }
     
     .history-list.active {
       max-height: none;
-      height: calc(100% - 240px);
+      height: calc(100% - 100px);
       overflow: scroll;
       transition: all 0.2s ease-in-out;
     }
@@ -498,7 +510,6 @@ main#main {
       color: white;
       display: block;
       position: relative;
-      top: 40px;
       text-align: right;
       padding-right: 36px;
       left: 0;
@@ -511,10 +522,8 @@ main#main {
       user-select: none;
     }
     
-    .history-more:hover {
-      text-decoration: none;
-      color: cornflowerblue;
-      cursor: pointer;
+    .history-more.active {
+      color: #aaa;
     }
     
     .user-alarm {
@@ -529,8 +538,6 @@ main#main {
       height: 50px;
       padding-left: 49px;
       align-items: center;
-      border-top: 1px solid hsla(0, 0%, 80%, 1);
-      border-bottom: 1px solid hsla(0, 0%, 80%, 1);
       user-select: none;
       transition: all 0.2s ease-in-out;
     }
@@ -566,7 +573,6 @@ main#main {
       height: 50px;
       padding-left: 49px;
       align-items: center;
-      border-bottom: 1px solid hsla(0, 0%, 80%, 1);
       user-select: none;
       transition: all 0.2s ease-in-out;
     }
