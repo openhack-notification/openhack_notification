@@ -841,6 +841,35 @@ main#main {
       position: absolute;
       top: 75px;
       left: 0;
+      width: 100%;
+      font-family: 'S-CoreDream-1Thin';
+      color: white;
+      list-style: none;
+      max-height: 250px;
+      overflow: hidden;
+      margin: 0;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .history-list li, .history-list li a {
+      color: white;
+      height: 20px;
+      margin-bottom: 5px;
+      transition: all 0.2s ease-in-out;
+      font-size: 15px;
+    }
+    
+    .history-list li a:hover {
+      text-decoration: none;
+      color: #aaa;
+      cursor: pointer;
+    }
+    
+    .history-list.active {
+      max-height: none;
+      height: calc(100% - 100px);
+      overflow: scroll;
+      transition: all 0.2s ease-in-out;
       margin-left: 25px;
       font-family: 'S-CoreDream-2ExtraLight';
     }
