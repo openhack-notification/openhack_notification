@@ -1,20 +1,20 @@
-<div class="container devise_form">
+<div class="container devise_form page-search-password">
   <h2>암호 분실</h2>
   
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= devise_error_messages! %>
   
     <div class="field">
-      <%= f.label :"이메일" %><br />
-      <%= f.email_field :email, class: "devise_noborder", required: true, autofocus: true, autocomplete: "email", placeholder: "가입당시 입력했던 메일주소를 입력해주세요." %>
+      <%= f.email_field :email, class: "devise_noborder input-email", required: true, autofocus: true, autocomplete: "email", placeholder: "가입당시 입력했던 메일주소를 입력해주세요." %>
     </div>
   
     <div class="actions">
-      <%= f.submit "암호 재 설정", class: "btn btn-sm btn-info" %>
+      <%= f.submit "암호 재설정", class: "btn-search-password" %>
     </div>
   <% end %>
   
-    <div style="margin-top: 30px" align="center">
-      <%= render "devise/shared/info" %>
+    <div style="margin: 30px 160px 20px 30px;" align="center">
+      <%= link_to "이전으로", :back, class: "edit-back", class: "back" %>
+      <%= link_to "회원가입", new_user_registration_path, style: "color: #616161", class: "sign-up" %>
     </div>
 </div>

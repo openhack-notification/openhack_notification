@@ -1,43 +1,43 @@
-<div class="container devise_form">
-  <h2>회원가입</h2>
-  
+
+
+<div class="container devise_form page-user-edit">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
-  
-    <div class="field">
-      <%= f.label :"이메일" %><br />
-      <%= f.email_field :email, class: "devise_noborder", required: true, autofocus: true, autocomplete: "email" %>
-    </div>
     
-    <div class="field">
-      <%= f.label :"닉네임" %><br />
-      <%= f.text_field :nickname, class: "devise_noborder", required: true, autofocus: true %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :"연락처 (- 제외, 숫자만)" %><br />
-      <%= f.text_field :phone_number, class: "devise_noborder", required: true, autofocus: true %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :"암호" %>
-      <% if @minimum_password_length %>
-      <em>(최소 <%= @minimum_password_length %>글자 이상)</em>
-      <% end %><br />
-      <%= f.password_field :password, class: "devise_noborder", required: true, autocomplete: "off" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :"암호 재 확인" %><br />
-      <%= f.password_field :password_confirmation, class: "devise_noborder", required: true, autocomplete: "off" %>
-    </div>
-  
-    <div class="actions" style="margin-top: 20px">
-      <%= f.submit "회원가입", class: "btn btn-sm btn-primary" %>
-    </div>
+    <section class="user-edit-section">
+      <h2 class="edit-title">회원 가입</h2>
+      <div class="edit_user">
+        <div class="field">
+          <%= f.email_field :email, class: "devise_noborder", required: true, autofocus: true, autocomplete: "<email!></email!>", placeholder: "ID"  %>
+        </div>
+        
+        <div class="field">
+          <%= f.text_field :nickname, class: "devise_noborder", required: true, autofocus: true, placeholder: "Username" %>
+        </div>
+        
+        <div class="field">
+          <%= f.text_field :phone_number, class: "devise_noborder", required: true, autofocus: true, placeholder: "Phone" %>
+        </div>
+      
+        <div class="field">
+          <%= f.password_field :password, class: "devise_noborder", autocomplete: "off", placeholder: "New Password" %>
+          <% if @minimum_password_length %>
+            <!--<br />-->
+            <!--<em>최소 <%= @minimum_password_length %>글자 이상</em>-->
+          <% end %>
+        </div>
+      
+        <div class="field">
+          <%= f.password_field :password_confirmation, class: "devise_noborder", required: true, autocomplete: "off", placeholder: "Password Confirm" %>
+        </div>
+      
+        <div class="actions">
+          <%= f.submit "회원가입", class: "btn btn-sm btn-primary user-edit-btn" %>
+        </div>
+      </div>
   <% end %>
-  
-  <div style="margin-top: 30px" align="center">
-    <%= render "devise/shared/info" %>
-  </div>
+      
+    <div class="hr"></div>
+    <%= link_to "이전으로", :back, class: "edit-back" %>
+  </section>
 </div>
