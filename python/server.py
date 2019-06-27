@@ -45,7 +45,7 @@ class MyHandler(BaseHTTPRequestHandler):
         self.wfile.write(message.encode('utf-8'))
         if(parsed_path.query):
             s = parsed_path.query
-            out = urllib.parse.unquote(s).split(',')
+            out = urllib.parse.unquote(s).split('$')
             #out = bytes(s, 'utf-8').decode('utf-8').split(',')
             for elem in out:
                 #print(out)
