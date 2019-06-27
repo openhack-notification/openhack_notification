@@ -3,6 +3,10 @@ class CreateBulletins < ActiveRecord::Migration[5.1]
     create_table :bulletins do |t|
       t.string :title # 제목
       t.text :content # 내용
+      t.string :url # URL 정보
+      t.string :select_role # 선택자 규칙
+      t.boolean :opt_crawl
+      
       t.string :user_nickname # 유저 닉네임
       t.boolean :opt_admin_only, default: false # 어드민만 글 작성 허용
       t.boolean :opt_email, default: false # 이메일 전송

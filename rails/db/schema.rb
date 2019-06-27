@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190627013807) do
+ActiveRecord::Schema.define(version: 20190627025633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20190627013807) do
   create_table "bulletins", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.string "url"
+    t.string "select_role"
+    t.boolean "opt_crawl"
     t.string "user_nickname"
     t.boolean "opt_admin_only", default: false
     t.boolean "opt_email", default: false
@@ -89,7 +92,7 @@ ActiveRecord::Schema.define(version: 20190627013807) do
 
   create_table "crawl_lists", force: :cascade do |t|
     t.string "title"
-    t.integer "is_message_send"
+    t.boolean "is_message_send"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "post_id"
@@ -198,6 +201,18 @@ ActiveRecord::Schema.define(version: 20190627013807) do
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "subscribes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.string "keyword_1"
+    t.string "keyword_2"
+    t.boolean "sms"
+    t.boolean "mail"
+    t.boolean "push"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|

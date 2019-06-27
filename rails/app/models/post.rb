@@ -3,6 +3,7 @@ class Post < ApplicationRecord
     belongs_to :user
     
     has_many :crawl_lists, dependent: :destroy
+    has_many :subscribes, dependent: :destroy
     
     # 해시태그 DB 모델관계 설정
     has_and_belongs_to_many :tags
