@@ -109,25 +109,18 @@ def insert_into_tables(rule, site_title, domain_title,url):
     post_id = insert_into_post(bulletin_id,site_title,url,rule)
     return post_id
 
-# 사용자 입력 정보
-url = 'https://cs.kookmin.ac.kr/news/notice/'
-str1 = '네이버 커넥트재단 부스트캠프'
-str2 = '2019학년도 1학기 학업성적 확인 및 정정요청 기간 …'
-
-crawler.start()
-
-rule, site_title, domain_title = crawler.find_board_info(url, str1, str2)
-
-print("rule: ", rule, "\nsite_title", site_title, "\ndomain_title: ", domain_title)
-
-boards,urls = crawler.crawl(url,rule)
-for i in crawler.crawl(url, rule):
-    print(i)
-
-post_id = insert_into_tables(rule,site_title,domain_title,url)
-
-board_urls = list(zip(boards,urls))
-for elem in board_urls:
-     insert_into_crawl_list(post_id,elem[0],elem[1])
-
-insert_into_tables(rule,site_title, domain_title,url)
+if __name__ == '__main__':
+    url = 'https://cs.kookmin.ac.kr/news/notice/'
+    str1 = '네이버 커넥트재단 부스트캠프'
+    str2 = '2019학년도 1학기 학업성적 확인 및 정정요청 기간 …'
+    crawler.start()
+    rule, site_title, domain_title = crawler.find_board_info(url, str1, str2)
+    print("rule: ", rule, "\nsite_title", site_title, "\ndomain_title: ", domain_title)
+    boards,urls = crawler.crawl(url,rule)
+    for i in crawler.crawl(url, rule):
+        print(i)
+    post_id = insert_into_tables(rule,site_title,domain_title,url)
+    board_urls = list(zip(boards,urls))
+    for elem in board_urls:
+        insert_into_crawl_list(post_id,elem[0],elem[1])
+    insert_into_tables(rule,site_title, domain_title,url)
