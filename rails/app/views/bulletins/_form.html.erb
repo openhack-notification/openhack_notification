@@ -6,11 +6,6 @@
     </div>
   </div>
 
-  <div class="field" style="margin-top: 10px;">
-    <%= tinymce :language => "en" %>
-    <%= f.text_area :content, id: :post_content, class: "form-control tinymce", rows: "10" %>
-  </div>
-
   <div class="col-12 col-sm-8 col-md-5" style="background-color: #ffd4d4; margin-top: 30px; margin-bottom: 10px; padding: 10px;"><font color="red"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> 어드민 전용 : 게시판 특수기능 설정</font></div>
   <div class="field">
     <%= f.label :opt_admin_only, "어드민만 작성 허용" %> <%= f.check_box :opt_admin_only, id: :bulletin_opt_admin_only %><br/>

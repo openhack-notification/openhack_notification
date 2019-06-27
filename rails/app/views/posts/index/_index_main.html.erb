@@ -1,36 +1,157 @@
 <div class="container">
-    <h1><%= @bulletin.title %></h1>
     
-    <table>
-        <thead>
-            <tr>
-                <th>제목</th>
-                <th>내용</th>
-                <th colspan="3"></th>
-            </tr>
-        </thead>
+    <div class="row">
+        <div class="col-md-4 crawling_add_box" style="margin-left: 10px;">
+            <div style="margin-top: 50px;">
+                <%= link_to "카테고리 내 원하는 컨텐츠가 없나요?", "/", style: "color: white; text-decoration: none;" %>
+            </div>
+        </div>
+        <% @posts.first(1).each do |t| %>
+            <% i = 0 %>
+            <div class="col-md-4 crawling_box" style="margin-top: -150px; margin-left: 10px;">
+                <%= content_tag(:div, t.title, class: "font-title-coredream") %>
+                <div style="text-align: right"><%= link_to "더 보기", t.url, target: "_blank" %></div>
+                <hr/>
+                <% CrawlList.all.each do |x| %>
+                    <% if (x.post.id == t.id) && (i < 5) %>
+                        <% i += 1 %>
+                        <%= content_tag(:div, x.title, class: "etc font-coredream") %>
+                    <% end %>
+                <% end %>
+                
+                <div style="margin-top: 42px;">
+                    <% Subscribe.all.each do |k| %>
+                        <% if not (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == false) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: absolute; z-index: 1;">
+                                <div>
+                                    <div class="subscribe_off" id="headingOne">
+                                        <a href="javascript: void(0)" style="color: #fb2626">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독신청
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                    
+                    <% Subscribe.all.each do |k| %>
+                        <% if (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == true) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: relative; z-index: 2;">
+                                <div>
+                                    <div class="subscribe_on" id="headingOne">
+                                        <a href="javascript: void(0)" class="text-none">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독중
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
         
-        <tbody>
-            <% @posts.each do |post| %>
-                <%= render 'posts/index/index_normal', post: post %>
-            <% end %>
-        </tbody>
-    </table>
-    
-    <br>
-    
-    <div align="right" style="margin-top: 30px">
-        <div class="d-none d-md-block"><%= render 'searches/search_form_pc', post: @posts.klass %></div>
-        <div class="d-md-none"><%= render 'searches/search_form_mobile', post: @posts.klass %></div>
+        <% @posts.drop(1).each do |t| %>
+            <% i = 0 %>
+            <div class="col-md-4 crawling_box" style="margin-top: 220px; margin-left: 10px;">
+                <%= content_tag(:div, t.title, class: "font-title-coredream") %>
+                <div style="text-align: right"><%= link_to "더 보기", t.url, target: "_blank" %></div>
+                <hr/>
+                <% CrawlList.all.each do |x| %>
+                    <% if (x.post.id == t.id) && (i < 5) %>
+                        <% i += 1 %>
+                        <%= content_tag(:div, x.title, class: "etc font-coredream") %>
+                    <% end %>
+                <% end %>
+                
+                <div style="margin-top: 42px;">
+                    <% Subscribe.all.each do |k| %>
+                        <% if not (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == false) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: absolute; z-index: 1;">
+                                <div>
+                                    <div class="subscribe_off" id="headingOne">
+                                        <a href="javascript: void(0)" style="color: #fb2626">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독신청
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                    
+                    <% Subscribe.all.each do |k| %>
+                        <% if (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == true) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: relative; z-index: 2;">
+                                <div>
+                                    <div class="subscribe_on" id="headingOne">
+                                        <a href="javascript: void(0)" class="text-none">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독중
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+        
     </div>
     
     <div style="margin-top: 50px; margin-bottom: 50px;">
         <%= paginate @posts %>
     </div>
-    
-    <% if (@bulletin.opt_admin_only == true) && (current_user.has_role? :admin) %>
-        <div align="right"><%= link_to '글 쓰기', (@bulletin.present? ?  new_bulletin_post_path(@bulletin) : new_post_path), class: 'btn btn-sm btn-primary' %></div>
-    <% elsif (@bulletin.opt_admin_only == false) %>
-        <div align="right"><%= link_to '글 쓰기', (@bulletin.present? ?  new_bulletin_post_path(@bulletin) : new_post_path), class: 'btn btn-sm btn-primary' %></div>
-    <% end %>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        $('input').lc_switch();
+    
+        // triggered each time a field changes status
+        $(document).on('lcs-statuschange', '.lcs_check', function() {
+            var status 	= ($(this).is(':checked')) ? 'checked' : 'unchecked',
+				subj 	= ($(this).attr('type') == 'radio') ? 'radio #' : 'checkbox #',
+				num		= $(this).val(); 
+            
+			$('#third_div ul').prepend('<li><em>[lcs-statuschange]</em>'+ subj + num +' changed status: '+ status +'</li>');
+        });
+        
+        
+        // triggered each time a field is checked
+        $(document).on('lcs-on', '.lcs_check', function() {
+			var subj 	= ($(this).attr('type') == 'radio') ? 'radio #' : 'checkbox #',
+				num		= $(this).val(); 
+			
+			$('#third_div ul').prepend('<li><em>[lcs-on]</em>'+ subj + num +' is checked</li>');
+        });
+        
+        
+        // triggered each time a is unchecked
+        $(document).on('lcs-off', '.lcs_check', function() {
+            var subj 	= ($(this).attr('type') == 'radio') ? 'radio #' : 'checkbox #',
+				num		= $(this).val(); 
+			
+			$('#third_div ul').prepend('<li><em>[lcs-off]</em>'+ subj + num +' is unchecked</li>');
+        });
+    });
+	
+	
+	
+	// clean events log
+	$('#third_div small').click(function() {
+		$('#third_div ul').empty();
+	});
+</script>

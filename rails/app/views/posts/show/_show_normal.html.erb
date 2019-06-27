@@ -6,7 +6,7 @@
 <p>
     <strong>Content:</strong>
     <% if @bulletin.opt_hashtag == true %>
-        <div class="panel-body"><%= render_with_hashtags(@post.content) %></div>
+        <div class="panel-body"><%#= render_with_hashtags(@post.content) %></div>
     <% else %>
         <%= content_tag(:div, @post.content.html_safe, :class => "panel-body") %>
     <% end %>

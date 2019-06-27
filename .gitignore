@@ -1,0 +1,54 @@
+*.rbc
+capybara-*.html
+.rspec
+rails/log
+rails/tmp/*
+rails/db/*.sqlite3
+rails/db/*.sqlite3-journal
+rails/public/system
+rails/public/assets/*
+rails/public/uploads/*
+rails/coverage/
+rails/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
+
+#Ignore all .c9 specific files
+/.c9/
+rails/solr/
+rails/elasticsearch-2.2.0.deb
+
+# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+rails/config/initializers/secret_token.rb
+
+# Only include if you have production secrets in this file, which is no longer a Rails default
+# config/secrets.yml
+
+# dotenv
+# TODO Comment out this rule if environment variables can be committed
+.env
+
+## Environment normalization:
+rails/.bundle
+rails/vendor/bundle
+
+# these should all be checked in to normalize the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
+
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
+
+# if using bower-rails ignore default bower_components path bower.json files
+/vendor/assets/bower_components
+*.bowerrc
+bower.json
+
+# Ignore pow environment settings
+.powenv
+
+# Ignore Byebug command history file.
+.byebug_history
+
+rails/config/application.yml
+rails/tmp/cache/*

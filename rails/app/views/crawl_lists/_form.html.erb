@@ -1,0 +1,27 @@
+<%= form_with(model: @post.present? ? [@crawl_list.post, @crawl_list] : @crawl_list, local: true) do |form| %>
+  <% if crawl_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(crawl_list.errors.count, "error") %> prohibited this crawl_list from being saved:</h2>
+
+      <ul>
+      <% crawl_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :crawl_list_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_message_send %>
+    <%= form.number_field :is_message_send, id: :crawl_list_is_message_send %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
