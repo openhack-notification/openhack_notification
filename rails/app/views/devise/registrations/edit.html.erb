@@ -13,6 +13,11 @@
       <%= f.label :"닉네임" %><br />
       <%= f.text_field :nickname, class: "devise_noborder", required: true, autofocus: true %>
     </div>
+    
+    <div class="field">
+      <%= f.label :"연락처 (- 제외, 숫자만)" %><br />
+      <%= f.text_field :phone_number, class: "devise_noborder", required: true, autofocus: true %>
+    </div>
   
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div><%= resource.unconfirmed_email %> 계정에 대한 인증을 기다리고있습니다.</div>

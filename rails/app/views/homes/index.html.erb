@@ -25,22 +25,10 @@
             <div class="history-category-wrap">
                 <div class="user-history">히스토리<a class="history-more">더보기</a></div>
                 <ul class="history-list">
-                    <li class="history-item"><a href="#">국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
-                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <% Subscribe.all.where(user_id: current_user).each do |x| %>
+                        <li class="history-item"><div class="etc"><%= link_to "#{x.post.bulletin.title} | #{x.post.title}", bulletin_posts_path(x.post.bulletin.id) %></div></a></li>
+                    <% end %>
                 </ul>
-                <!--<div class="user-alarm"><a>알림</a><span class="alarm-number">0</span></div>-->
-                <!--<div class="user-notice"><a>공지사항</a></div>-->
             </div>
         </div>
     </nav>
