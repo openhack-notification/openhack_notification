@@ -1,6 +1,7 @@
 /* Input Form 1 */
 .form_1 {
     position: relative;
+    min-width: 100%;
     margin: auto;
     width: 100%;
     max-width: 280px;
@@ -72,6 +73,7 @@
 /* Input Form 2 */
 .form_2 {
     position: relative;
+    min-width: 100%;
     margin: auto;
     width: 100%;
     max-width: 280px;
@@ -851,7 +853,7 @@
 
 .login-container {
     display: grid;
-    grid-template-columns: auto 300px;
+    grid-template-columns: auto minmax(300px, 30vw);
     grid-template-areas: 
       "intro login";
     margin: 0;
@@ -958,6 +960,7 @@ div.login_box {
 }
 
 input.type-email {
+    width: 100%;
     margin-top: 0;
     border: solid 1px rgba(24, 24, 24, 0.2);
     padding-left: 10px;
@@ -967,6 +970,7 @@ input.type-email {
 }
 
 input.type-password {
+    width: 100%;
     margin-top: 10px;
     border: solid 1px rgba(24, 24, 24, 0.2);
     padding-left: 10px;
