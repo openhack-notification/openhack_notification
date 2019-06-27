@@ -83,7 +83,7 @@ def insert_into_post(bulletin_id,site_title,url,select_rule):
     else:
         return 3
 
-def insert_into_crawl_list(post_id,title):
+def insert_into_crawl_list(post_id,title,url):
     conn=get_conn()
     cur = conn.cursor()
     quary = "Select title,id from crawl_lists"
@@ -99,7 +99,7 @@ def insert_into_crawl_list(post_id,title):
         cur = conn.cursor()        
         now = datetime.now()
 
-        query = "insert into crawl_lists(post_id,title,created_at,updated_at) values ("+str(post_id)+",'"+title+"','"+str(now)+"','"+str(now)+"')"
+        query = "insert into crawl_lists(post_id,title,created_at,updated_at,url) values ("+str(post_id)+",'"+title+"','"+str(now)+"','"+str(now)+"','"+url+"')"
         cur.execute(query)
         conn.commit()
         
@@ -120,14 +120,14 @@ rule, site_title, domain_title = crawler.find_board_info(url, str1, str2)
 
 print("rule: ", rule, "\nsite_title", site_title, "\ndomain_title: ", domain_title)
 
-boards = crawler.crawl(url,rule)
+boards,urls = crawler.crawl(url,rule)
 for i in crawler.crawl(url, rule):
     print(i)
 
 post_id = insert_into_tables(rule,site_title,domain_title,url)
 
-
-for elem in boards:
-     insert_into_crawl_list(post_id,elem)
+board_urls = list(zip(boards,urls))
+for elem in board_urls:
+     insert_into_crawl_list(post_id,elem[0],elem[1])
 
 insert_into_tables(rule,site_title, domain_title,url)
