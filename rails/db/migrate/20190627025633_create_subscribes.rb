@@ -4,6 +4,7 @@ class CreateSubscribes < ActiveRecord::Migration[5.1]
       # Subscribe.create(post_id: 1, user_id: 1, keyword_1: "장학", keyword_2: "학사", sms: true, mail: false, push: false)
       t.integer :post_id
       t.integer :user_id
+      t.boolean :switch
       t.string :keyword_1
       t.string :keyword_2
       t.boolean :sms, default: false

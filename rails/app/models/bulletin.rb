@@ -1,6 +1,5 @@
 class Bulletin < ApplicationRecord
     has_many :posts, dependent: :destroy
-    belongs_to :user
     
     # cancancan 적용
     resourcify

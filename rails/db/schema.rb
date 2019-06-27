@@ -31,15 +31,6 @@ ActiveRecord::Schema.define(version: 20190627025633) do
 
   create_table "bulletins", force: :cascade do |t|
     t.string "title"
-    t.boolean "opt_crawl"
-    t.string "user_nickname"
-    t.boolean "opt_admin_only", default: false
-    t.boolean "opt_email", default: false
-    t.integer "opt_email_quantity"
-    t.boolean "opt_hashtag", default: true
-    t.boolean "opt_post_vote", default: false
-    t.boolean "opt_comment_vote", default: false
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -89,6 +80,7 @@ ActiveRecord::Schema.define(version: 20190627025633) do
 
   create_table "crawl_lists", force: :cascade do |t|
     t.string "title"
+    t.string "url"
     t.boolean "is_message_send", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -201,6 +193,7 @@ ActiveRecord::Schema.define(version: 20190627025633) do
   create_table "subscribes", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"
+    t.boolean "switch"
     t.string "keyword_1"
     t.string "keyword_2"
     t.boolean "sms", default: false
