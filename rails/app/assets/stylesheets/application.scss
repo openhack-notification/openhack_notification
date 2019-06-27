@@ -309,3 +309,37 @@
     border-top: 1px dashed #1e9262;
     padding: 10px;
   }
+  
+main {
+  display: flex;
+  min-width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-color: #EEEEEE;
+  
+  #search-wrap {
+    display: flex;
+    min-width: 400px;
+    height: 100px;
+    align-self: center;
+    margin: 0 auto;
+    border: 1px solid black;
+    
+    .search-input-text {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px solid black;
+      width: 100%;
+      text-align: center;
+      height: fit-content;
+      margin: 0 30px;
+      align-self: center;
+    }
+    
+    .search-icon {
+      margin: 0 20px 0 auto;
+      align-self: center;
+    }
+  }
+}
+  

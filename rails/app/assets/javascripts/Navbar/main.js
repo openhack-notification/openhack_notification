@@ -169,5 +169,26 @@ jQuery(document).ready(function( $ ) {
     loop: true,
     items: 1
   });
-
 });
+
+window.addEventListener(`load`, () => {
+  toggleMenu();  
+});
+
+function toggleMenu() {
+  document.querySelector(`.header-menu`).addEventListener(`click`, event => {
+    event.stopImmediatePropagation();
+    const content = document.querySelector(`.header-menu-content`);
+    content.classList.toggle(`active`);
+  });
+  
+  document.body.addEventListener(`click`, event => {
+    const content = document.querySelector(`.header-menu-content`);
+    const target = event.target;
+    
+    if (target.closest(`.header-menu-content`)) {
+      return;
+    }
+    content.classList.remove(`active`);
+  });
+}
