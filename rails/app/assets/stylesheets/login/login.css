@@ -3,6 +3,7 @@
     position: relative;
     min-width: 100%;
     margin: auto;
+    margin-top: 5px;
     width: 100%;
     max-width: 280px;
 }
@@ -902,6 +903,7 @@ div.login_box {
 }
 
 .login-btn {
+    height: 40px;
     border: 0;
     width: 100%;
     background-color: #ff4555;
