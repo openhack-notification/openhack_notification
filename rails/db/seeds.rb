@@ -72,6 +72,7 @@ CrawlList.create( post_id: 5, title: "교내 단수 및 정전 안내", is_messa
 CrawlList.create( post_id: 5, title: "[창업지원단] 2019년 글로벌 창업 강좌 [Global Challenge] 참가자 모집", is_message_send: "false" )
 CrawlList.create( post_id: 5, title: "[홍보팀] 교수님들의 다양한 성과를 공유해주세요", is_message_send: "false" )
 
+Subscribe.create( post_id: 1, user_id: 1 )
 ## 데이터 테스트용
 # for num in 1..50000
 #     AllNotice.create( title: "#{num}", content: "안녕#{num+2}", global_notice: 'false', local_notice: 'false', user_nickname: "어드민", user_id: "1" )

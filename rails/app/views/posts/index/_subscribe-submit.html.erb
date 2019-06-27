@@ -1,16 +1,18 @@
 <div id="collapse<%= t.id %>" class="collapse" aria-labelledby="heading<%= t.id %>" data-parent="#accordion<%= t.id %>" style="background-color: white; height: 185px; border: 2px solid #d3d3d3; padding: 10px;">
-    <%= form_tag(searches_index_path, method: "get") do %>
+    <%= form_tag(actions_index_path, method: "get") do %>
         <div class="row">
             <div class="col-md-6" style="margin-top: 5px"><i class="fas fa-bell"></i> 구독 알림설정</div>
-            <div class="col-md-6" style="text-align: right; margin-top: 5px;"><%= check_box_tag(:switch, nil, class: "lcs_check") %></div>
+            <div class="col-md-6" style="text-align: right; margin-top: 5px;"><%= check_box_tag :switch, checked = true, class: "lcs_check" %></div>
             
             <div class="col-md-6" style="margin-top: 10px"><%= text_field_tag(:keyword_1, nil, class: "input_noborder", placeholder: "첫 번째 키워드") %></div>
             <div class="col-md-6" style="margin-top: 10px"><%= text_field_tag(:keyword_2, nil, class: "input_noborder", placeholder: "두 번째 키워드") %></div>
             
             <div class="col-md-3" style="margin-top: 15px"><i class="fas fa-mobile-alt"></i> SMS</div>
-            <div class="col-md-3" style="text-align: right; margin-top: 15px"><%= check_box_tag(:sms, nil, class: "lcs_check") %></div>
+            <div class="col-md-3" style="text-align: right; margin-top: 15px"><%= check_box_tag :sms, checked = true, class: "lcs_check" %></div>
             <div class="col-md-3" style="margin-top: 15px"><i class="far fa-envelope"></i> MAIL</div>
-            <div class="col-md-3" style="text-align: right; margin-top: 15px"><%= check_box_tag(:mail, nil, class: "lcs_check") %></div>
+            <div class="col-md-3" style="text-align: right; margin-top: 15px"><%= check_box_tag :mail, checked = true, class: "lcs_check" %></div>
+            <input value="<%= t.id %>" name="post_num" type="hidden" />
+            <input value="<%= current_user.id %>" name="user_id" type="hidden" />
         </div>
         <div style="text-align: right; margin-top: 15px; margin-bottom: 5px;"><%= submit_tag("등록", class: "font-coredream", class: "subscribe-submit", style: "cursor: pointer;") %></div>
     <% end %>

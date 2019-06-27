@@ -19,21 +19,40 @@
                     <% end %>
                 <% end %>
                 
-                <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-top: 35px; margin-left: -22px;">
-                    <div>
-                        <% Subscribe.all.each do |x| %>
-                            <% if (t.id == x.post_id) && (x.user_id == current_user.id) %>
-                                <div class="subscribe_on" id="headingOne">
-                                    <a href="javascript: void(0)" class="text-none">
-                                        <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
-                                            <i class="fas fa-bell"></i> 구독중
-                                        </div>
-                                    </a>
+                <div style="margin-top: 42px;">
+                    <% Subscribe.all.each do |k| %>
+                        <% if not (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == false) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: absolute; z-index: 1;">
+                                <div>
+                                    <div class="subscribe_off" id="headingOne">
+                                        <a href="javascript: void(0)" style="color: #fb2626">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독신청
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
                                 </div>
-                            <% end %>
-                            <%= render 'posts/index/subscribe-submit', t: t %>
+                            </div>
                         <% end %>
-                    </div>
+                    <% end %>
+                    
+                    <% Subscribe.all.each do |k| %>
+                        <% if (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == true) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: relative; z-index: 2;">
+                                <div>
+                                    <div class="subscribe_on" id="headingOne">
+                                        <a href="javascript: void(0)" class="text-none">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독중
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
                 </div>
             </div>
         <% end %>
@@ -51,21 +70,40 @@
                     <% end %>
                 <% end %>
                 
-                <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-top: 35px; margin-left: -22px;">
-                    <div>
-                        <% Subscribe.all.each do |x| %>
-                            <%# if (t.id == x.post_id) && (x.user_id == current_user.id) %>
-                                <div class="subscribe_on" id="headingOne">
-                                    <a href="javascript: void(0)" class="text-none">
-                                        <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
-                                            <i class="fas fa-bell"></i> 구독중
-                                        </div>
-                                    </a>
+                <div style="margin-top: 42px;">
+                    <% Subscribe.all.each do |k| %>
+                        <% if not (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == false) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: absolute; z-index: 1;">
+                                <div>
+                                    <div class="subscribe_off" id="headingOne">
+                                        <a href="javascript: void(0)" style="color: #fb2626">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독신청
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
                                 </div>
-                            <%# end %>
-                            <%= render 'posts/index/subscribe-submit', t: t %>
+                            </div>
                         <% end %>
-                    </div>
+                    <% end %>
+                    
+                    <% Subscribe.all.each do |k| %>
+                        <% if (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == true) %>
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: relative; z-index: 2;">
+                                <div>
+                                    <div class="subscribe_on" id="headingOne">
+                                        <a href="javascript: void(0)" class="text-none">
+                                            <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
+                                                <i class="fas fa-bell"></i> 구독중
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <%= render 'posts/index/subscribe-submit', t: t %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
                 </div>
             </div>
         <% end %>

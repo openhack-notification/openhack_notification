@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'actions/index'
+
   get 'homes/index'
 
   resources :all_notices
