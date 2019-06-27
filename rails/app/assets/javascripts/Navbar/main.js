@@ -169,5 +169,37 @@ jQuery(document).ready(function( $ ) {
     loop: true,
     items: 1
   });
-
 });
+
+window.addEventListener(`DOMContentLoaded`, () => {
+  onClickHistoryMore();
+  hoverHistoryMore();
+});
+
+function onClickHistoryMore() {
+  document.querySelector(`.user-history`).addEventListener(`click`, event => {
+    const list = document.querySelector(`.history-list`) || false;
+    const button = document.querySelector(`.history-more`);
+    
+    if(!list.classList.contains(`active`)) {
+      list.classList.add(`active`);
+      button.textContent = `숨기기`;
+    } else {
+      list.classList.remove(`active`);
+      button.textContent = `더보기`;
+    }
+  }, true);
+}
+
+function hoverHistoryMore() {
+  document.querySelector(`.user-history`).addEventListener(`mouseenter`, event => {
+    const button = document.querySelector(`.history-more`);
+    button.classList.add(`active`);
+  }, true);
+  
+  document.querySelector(`.user-history`).addEventListener(`mouseleave`, event => {
+    const button = document.querySelector(`.history-more`);
+    button.classList.remove(`active`);
+  }, true);
+}
+

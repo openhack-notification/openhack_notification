@@ -389,3 +389,291 @@
     border-top: 1px dashed #1e9262;
     padding: 10px;
   }
+  
+main#main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  
+  .search-section {
+    position: relative;
+    width: 1100px;
+    max-width: 55vw;
+    
+    .search-btn {
+      transition: all 0.2s ease-in-out;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    
+    .search-btn:hover {
+      filter: brightness(60%);
+    }
+    
+    .search-section-title {
+      position: absolute;
+      top: 27%;
+      left: 11%;
+      color: black;
+      font-family: 'S-CoreDream-2ExtraLight';
+      font-size: 2.5rem;
+      word-break: keep-all;
+      z-index: 10;
+    }
+  
+    .search-section-subtitle {
+      font-family: 'S-CoreDream-4Regular';
+      color: black;
+      font-size: 2.5rem;
+      z-index: 10;
+    }
+    
+    .search-wrap {
+      display: flex;
+      top: 57%;
+      left: 0;
+      width: auto;
+      margin: 0 auto;
+      position: relative;
+      border-bottom: 3px solid #ff4555;
+      width: auto;
+      margin: 0 11%;
+      padding-bottom: 10px;
+      justify-content: space-between;
+      z-index: 10;
+      
+      .search-input-text {
+        border: 0;
+        font-size: 1.2em;
+        width: 100%;
+        font-family: 'S-CoreDream-4Regular';
+        color: #181818;
+      }
+    }
+  }
+
+  .user-sidebar * {
+    user-select: none;
+  }
+
+  .user-sidebar {
+    overflow: scroll;
+    background-image: url(/images/main-img.jpg);
+    background-size: cover;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    
+    .user-sidebar-content {
+      position: relative;
+      width: 260px;
+      height: 100vh;
+      margin-left: auto;
+      background-color: #212529d4;
+    }
+    
+    .text-logo {
+      position: absolute;
+      top: 34px;
+      left: 33px;
+    }
+    
+    .user-edit {
+      left: 30px;
+      top: 140px;
+      width: 95px;
+      height: 40px;
+      position: absolute;
+      cursor: pointer;
+      z-index: 20;
+    }
+    
+    .user-img {
+      position: absolute;
+      top: 147px;
+      left: 34px;
+      background-color: white;
+      border-radius: 100%;
+    }
+    
+    .user-name {
+      color: white;
+      font-family: 'S-CoreDream-4Regular';
+      position: absolute;
+      top: 150px;
+      left: 74px;
+      font-size: 17px;
+    }
+    
+    .user-logout {
+      color: white;
+      position: absolute;
+      top: 154px;
+      right: 36px;
+      font-size: 12px;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .user-logout:hover {
+      color: #aaa;
+      text-decoration: none;
+    }
+    
+    .history-category-wrap {
+      position: relative;
+      top: 200px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 240px);
+    }
+    
+    .user-history {
+      display: flex;
+      color: white;
+      font-family: 'S-CoreDream-4Regular';
+      position: relative;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      font-size: 17px;
+      height: 50px;
+      padding-left: 39px;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .user-history:hover {
+      background-color: hsla(0, 0%, 100%, 0.2);
+    }
+    
+    .history-list {
+      position: relative;
+      top: 34px;
+      left: 0;
+      width: 100%;
+      font-family: 'S-CoreDream-1Thin';
+      color: white;
+      list-style: none;
+      max-height: 100px;
+      overflow: hidden;
+      margin: 0;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .history-list li, .history-list li a {
+      color: white;
+      height: 20px;
+      margin-bottom: 5px;
+      transition: all 0.2s ease-in-out;
+      font-size: 15px;
+    }
+    
+    .history-list li a:hover {
+      text-decoration: none;
+      color: #aaa;
+      cursor: pointer;
+    }
+    
+    .history-list.active {
+      max-height: none;
+      height: calc(100% - 100px);
+      overflow: scroll;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .history-more {
+      color: white;
+      display: block;
+      position: relative;
+      text-align: right;
+      padding-right: 36px;
+      left: 0;
+      width: 100%;
+      font-size: 12px;
+      font-family: 'S-CoreDream-1Thin';
+      transition: all 0.2s ease-in-out;
+      width: fit-content;
+      margin-left: auto;
+      user-select: none;
+    }
+    
+    .history-more.active {
+      color: #aaa;
+    }
+    
+    .user-alarm {
+      display: flex;
+      color: white;
+      font-family: 'S-CoreDream-4Regular';
+      position: relative;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      font-size: 17px;
+      height: 50px;
+      padding-left: 49px;
+      align-items: center;
+      user-select: none;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .alarm-number {
+      min-width: 22px;
+      justify-content: center;
+      background-color: white;
+      border-radius: 10px;
+      margin-left: 10px;
+      padding-right: 5px;
+      padding-left: 5px;
+      width: fit-content;
+      height: 20px;
+      align-items: center;
+      display: flex;
+      color: red;
+      font-weight: bold;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 10px;
+      text-align: center;
+    }
+    
+    .user-notice {
+      display: flex;
+      color: white;
+      font-family: 'S-CoreDream-4Regular';
+      position: relative;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      font-size: 17px;
+      height: 50px;
+      padding-left: 49px;
+      align-items: center;
+      user-select: none;
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .user-alarm:hover, .user-notice:hover {
+      background-color: hsla(0, 0%, 100%, 0.2);
+      cursor: pointer;
+    }
+  }
+  
+  .user-sidebar:before {
+    content: " ";
+    position: absolute;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    filter: blur(10px) brightness(0.9);
+    background-image: url(/images/main-img.jpg);
+    background-size: cover;
+    background-position: -79px 0px;
+    background-repeat: no-repeat;
+  }
+}
+  
