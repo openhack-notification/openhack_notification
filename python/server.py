@@ -4,10 +4,11 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from optparse import OptionParser
 from urllib.parse import urlparse
 import urllib
+
 def crawling(url,str1,str2):
     crawler.start()
+    
     rule, site_title, domain_title = crawler.find_board_info(url, str1, str2)
-
     print("rule: ", rule, "\nsite_title : ", site_title, "\ndomain_title: ", domain_title)
 
     _list=crawler.crawl(url,rule)
@@ -18,7 +19,7 @@ def crawling(url,str1,str2):
     board_urls = list(zip(boards,urls))
 
     for _i,elem in enumerate(board_urls):
-        print(str(_i)+'/'+str(len(board_urls)))
+        print(str(_i+1)+'/'+str(len(board_urls)))
         print(elem[0],elem[1])
         main.insert_into_crawl_list(post_id,elem[0],elem[1])
 
@@ -39,10 +40,10 @@ class MyHandler(BaseHTTPRequestHandler):
         if(parsed_path.query):
             s = parsed_path.query
             out = urllib.parse.unquote(s).split('$')
-            for elem in out:
-                crawling(out[0],out[1],out[2])
+            crawling(out[0],out[1],out[2])
         print("finishing crawling")
         return None
+
 
 s=HTTPServer(('0.0.0.0',8080),MyHandler)
 s.serve_forever()
