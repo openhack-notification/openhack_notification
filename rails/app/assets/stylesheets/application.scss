@@ -310,36 +310,88 @@
     padding: 10px;
   }
   
-main {
-  display: flex;
+main#main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
   min-width: 100vw;
+  width: 100vw;
   height: 100vh;
   margin: 0;
-  background-color: #EEEEEE;
+  padding: 0;
   
-  #search-wrap {
-    display: flex;
-    min-width: 400px;
-    height: 100px;
-    align-self: center;
-    margin: 0 auto;
-    border: 1px solid black;
+  .search-section {
+    position: relative;
+    width: 1100px;
+    max-width: 70vw;
     
-    .search-input-text {
-      background-color: transparent;
-      border: 0;
-      border-bottom: 1px solid black;
-      width: 100%;
-      text-align: center;
-      height: fit-content;
-      margin: 0 30px;
-      align-self: center;
+    .search-section-title {
+      position: absolute;
+      top: 27%;
+      left: 11%;
+      color: black;
+      font-family: 'S-CoreDream-2ExtraLight';
+    }
+  
+    .search-section-subtitle {
+      position: absolute;
+      top: 36%;
+      left: 11%;
+      font-family: 'S-CoreDream-4Regular';
+      color: black;
+      width: auto;
+      min-width: 300px;
     }
     
-    .search-icon {
-      margin: 0 20px 0 auto;
-      align-self: center;
+    .search-wrap {
+      display: flex;
+      top: 57%;
+      left: 0;
+      width: auto;
+      margin: 0 auto;
+      position: relative;
+      border-bottom: 3px solid #ff4555;
+      width: auto;
+      margin: 0 11%;
+      padding-bottom: 10px;
+      justify-content: space-between;
+      
+      .search-input-text {
+        border: 0;
+        font-size: 1.2em;
+        width: 100%;
+        font-family: 'S-CoreDream-4Regular';
+        color: #181818;
+      }
     }
+  }
+
+  .user-sidebar {
+    background-image: url(/images/main-img.jpg);
+    background-size: cover;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    
+    .user-sidebar-content {
+      position: absolute;
+      width: 260px;
+      height: 100vh;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  .user-sidebar:before {
+    content: " ";
+    position: absolute;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    filter: blur(10px) brightness(0.9);
+    background-image: url(/images/main-img.jpg);
+    background-size: cover;
+    background-position: -79px 0px;
+    background-repeat: no-repeat;
   }
 }
   

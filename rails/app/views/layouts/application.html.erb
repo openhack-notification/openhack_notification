@@ -41,6 +41,7 @@
   	/* 나눔 손글씨 */
   	@font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
   	@font-face { font-family: 'S-CoreDream-1Thin'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-1Thin.woff') format('woff'); font-weight: normal; font-style: normal; }
+  	@font-face { font-family: 'S-CoreDream-4Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff'); font-weight: normal; font-style: normal; }
   	
   	@font-face {
       font-family:'Nanum Pen Script';
@@ -61,64 +62,9 @@
   </head>
 
   <body>
-  <!-- 로딩중 아이콘 -->
-  <div id="loading"><img id="loading-image" src="<%= asset_path 'loading.gif' %>" alt="Loading..." /></div>
-  
-  <!-- nav-bar -->
-  <% if user_signed_in? %>
-  <header id="header">
-    <div class="container-fluid">
-      <div id="logo" class="pull-left">
-        <!--<h1><a href="/" class="scrollto">Logo</a></h1>-->
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
-      </div>
-    
-      <i class="fa fa-bars fa-2x header-menu"></i>
-      <nav class="header-menu-content">
-        <ul>
-          <% if user_signed_in? %>
-            <span id="user-info">
-              <img id="user-img" src="#" />
-              <span id="user-name" style="color: white;"><%= current_user.nickname.truncate(10, omission: '...') %></span>
-              <a id="user-edit">EDIT</a>
-            </span>
-            <% if current_user.new_notifications.unread_by(current_user).count > 0 %>
-              <li class="d-none d-md-block menu-has-children"><span style="color: yellow;"><a><i class="fas fa-bell"></i> <%= current_user.new_notifications.unread_by(current_user).count %></a></span>
-                <ul>
-                  <li><%= link_to '<b>모든 알림 지우기</b>'.html_safe, new_notifications_read_all_path %></li>
-                  <li><%= render partial: "new_notifications/new_notification", collection: current_user.new_notifications.unread_by(current_user) %></li>
-                </ul>
-              </li>
-            <% else %>
-              <li class="d-none d-md-block"><span style="color: white; margin-left: 10px; margin-right: 10px;"><i class="fas fa-bell"></i> 0</span></li>
-            <% end %>
-            <!--<li class="d-none d-md-block menu-has-children"><span style="color: white;"><a><i class="far fa-id-card"></i> <%= current_user.nickname.truncate(10, omission: '...') %></a></span>-->
-            <ul>
-              <li><%= link_to "개인정보 수정", edit_user_registration_path(current_user.id) %></li>
-              <li><%= link_to "메세지함", "/users/message" %></li>
-              <li><%= link_to "로그아웃", destroy_user_session_path, method: "DELETE" %></li>
-              <% if current_user.admin? %>
-                <li><%= link_to "관리자 메뉴", rails_admin_path %></li>
-              <% end %>
-              <% if (current_user.admin?) && (Rails.env.development?) %>
-                <li><%= link_to "Rails DB 이동", rails_db_path, target: "_blank" %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li><a href="/#">히스토리</a></li>
-          <li><a href="/all_notices">공지사항</a></li>
-        </ul>
-        <% else %>
-          <!--로그인 이후에 표시되므로, empty  -->
-        <% end %>
-      </nav>
-      </div>
-    </header>
-  <% else %>
-    <!-- 비로그인시 툴바 미생성 -->
-  <% end %>
-  <!-- nav-bar -->
+    <!-- 로딩중 아이콘 -->
+    <div id="loading"><img id="loading-image" src="<%= asset_path 'loading.gif' %>" alt="Loading..." /></div>
+      
     <%= yield %>
   </body>
 </html>
