@@ -910,6 +910,12 @@ div.login_box {
     outline: none;
 }
 
+.login-btn:active, .login-btn:focus {
+    background-color: hsl(355, 100%, 44%) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .app-info {
     position: relative;
     background-image: url("/images/info-img.jpg");
