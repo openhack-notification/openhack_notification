@@ -9,5 +9,5 @@ class Bulletin < ApplicationRecord
     acts_as_paranoid
     
     # 게시글 및 댓글 제목, 내용을 다 썼는지 체크
-    validates :title, :content, presence: true
+    validates :title, presence: true
 end

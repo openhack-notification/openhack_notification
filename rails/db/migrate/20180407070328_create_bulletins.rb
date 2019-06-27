@@ -2,9 +2,6 @@ class CreateBulletins < ActiveRecord::Migration[5.1]
   def change
     create_table :bulletins do |t|
       t.string :title # 제목
-      t.text :content # 내용
-      t.string :url # URL 정보
-      t.string :select_role # 선택자 규칙
       t.boolean :opt_crawl
       
       t.string :user_nickname # 유저 닉네임

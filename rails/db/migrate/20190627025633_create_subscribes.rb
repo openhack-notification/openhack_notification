@@ -6,9 +6,9 @@ class CreateSubscribes < ActiveRecord::Migration[5.1]
       t.integer :user_id
       t.string :keyword_1
       t.string :keyword_2
-      t.boolean :sms
-      t.boolean :mail
-      t.boolean :push
+      t.boolean :sms, default: false
+      t.boolean :mail, default: false
+      t.boolean :push, default: false
 
       t.timestamps
     end

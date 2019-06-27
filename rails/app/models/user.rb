@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :posts
   has_many :subscribes
   has_many :bulletins
   has_many :all_notices
