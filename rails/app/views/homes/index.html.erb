@@ -5,12 +5,38 @@
         
         <div class="search-wrap">
             <input type="text" class="search-input-text" placeholder="어떤 사이트를 찾으시나요?" />
-            <object type="image/svg+xml" data="/images/meg.svg" width="35" height="35"></object>
+            <img class="search-btn" src="/images/meg.svg" width="35" height="35" />
         </div>
     </section>
     <nav class="user-sidebar">
         <div class="user-sidebar-content">
+            <img class="text-logo" src="/images/text-logo.svg" width="80" height="20" />
             
+            <img class="user-img" src="/images/user.svg" width="30" height="30" />
+            <%= content_tag(:span, " #{current_user.nickname.truncate(10, omission: '...')}", class: "user-name") %>
+            <%= link_to "로그아웃", destroy_user_session_path, method: "DELETE", class: "user-logout" %>
+            
+            <div class="history-category-wrap">
+                <div class="user-history">히스토리</div>
+                <ul class="history-list">
+                    <li class="history-item"><a href="#">국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                    <li class="history-item"><a>국민대학교 | 취창업</a></li>
+                </ul>
+                <a class="history-more">더보기</a>
+                <div class="user-alarm"><a>알림</a><span class="alarm-number">0</span></div>
+                <div class="user-notice"><a>공지사항</a></div>
+            </div>
         </div>
     </nav>
 </main>

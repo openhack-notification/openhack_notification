@@ -171,24 +171,18 @@ jQuery(document).ready(function( $ ) {
   });
 });
 
-window.addEventListener(`load`, () => {
-  toggleMenu();  
+window.addEventListener(`DOMContentLoaded`, () => {
+  onClickHistoryMore();
 });
 
-function toggleMenu() {
-  document.querySelector(`.header-menu`).addEventListener(`click`, event => {
-    event.stopImmediatePropagation();
-    const content = document.querySelector(`.header-menu-content`);
-    content.classList.toggle(`active`);
-  });
-  
-  document.body.addEventListener(`click`, event => {
-    const content = document.querySelector(`.header-menu-content`);
-    const target = event.target;
+function onClickHistoryMore() {
+  document.querySelector(`.history-more`).addEventListener(`click`, event => {
+    const list = document.querySelector(`.history-list`) || false;
     
-    if (target.closest(`.header-menu-content`)) {
-      return;
+    if(!list.classList.contains(`active`)) {
+      list.classList.add(`active`);
+    } else {
+      list.classList.remove(`active`);
     }
-    content.classList.remove(`active`);
-  });
+  }, true);
 }
