@@ -922,7 +922,7 @@ main#main {
 
 .page-search-password {
   h2 {
-    margin-bottom: 5vw;
+    margin-bottom: 30px;
     margin-left: 30px;
     margin-top: 16vh;
     font-family: 'S-CoreDream-4Regular';
@@ -943,7 +943,8 @@ main#main {
   }
   
   .actions {
-    margin-right: 160px;
+    float: left;
+    margin-left: 25px;
     display: flex;
     justify-content: flex-end;
   }
