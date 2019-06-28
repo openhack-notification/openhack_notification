@@ -1,16 +1,16 @@
-<div class="container">
-    
-    <div class="row">
-        <div class="col-md-4 crawling_add_box" style="margin-left: 10px;">
+<div class="container page-post">
+    <%= render "devise/shared/sidebar" %>
+    <div class="row page-post-content">
+        <div class="col-md-4 crawling_add_box">
             <div style="margin-top: 50px;">
-                <%= link_to "카테고리 내 원하는 컨텐츠가 없나요?", "/", style: "color: white; text-decoration: none;" %>
+                <%= link_to "카테고리 알림에 원하는 단어를 넣어 내게 꼭 필요한 알람을 받아보세요!", "/", style: "color: white; text-decoration: none;" %>
             </div>
         </div>
         <% @posts.first(1).each do |t| %>
             <% i = 0 %>
-            <div class="col-md-4 crawling_box" style="margin-top: -150px; margin-left: 10px;">
+            <div class="col-md-4 crawling_box">
                 <%= content_tag(:div, t.title, class: "font-title-coredream") %>
-                <div style="text-align: right"><%= link_to "더 보기", t.url, target: "_blank" %></div>
+                <div style="text-align: right"><%= link_to "사이트로 이동", t.url, target: "_blank", class: "move-site" %></div>
                 <hr/>
                 <% CrawlList.all.each do |x| %>
                     <% if (x.post.id == t.id) && (i < 5) %>
@@ -19,7 +19,7 @@
                     <% end %>
                 <% end %>
                 
-                <div style="margin-top: 42px;">
+                <div>
                     <% Subscribe.all.each do |k| %>
                         <% if not (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == false) %>
                             <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: absolute; z-index: 1;">
@@ -27,7 +27,7 @@
                                     <div class="subscribe_off" id="headingOne">
                                         <a href="javascript: void(0)" style="color: #fb2626">
                                             <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
-                                                <i class="fas fa-bell"></i> 구독신청
+                                                <i class="far fa-bell"></i> 구독신청
                                             </div>
                                         </a>
                                     </div>
@@ -61,7 +61,7 @@
             <% i = 0 %>
             <div class="col-md-4 crawling_box" style="margin-top: 220px; margin-left: 10px;">
                 <%= content_tag(:div, t.title, class: "font-title-coredream") %>
-                <div style="text-align: right"><%= link_to "더 보기", t.url, target: "_blank" %></div>
+                <div style="text-align: right"><%= link_to "사이트로 이동", t.url, target: "_blank", class: "move-site" %></div>
                 <hr/>
                 <% CrawlList.all.each do |x| %>
                     <% if (x.post.id == t.id) && (i < 5) %>
@@ -73,12 +73,12 @@
                 <div style="margin-top: 42px;">
                     <% Subscribe.all.each do |k| %>
                         <% if not (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == false) %>
-                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: absolute; z-index: 1;">
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 100%; margin-left: -22px; position: absolute; z-index: 1;">
                                 <div>
                                     <div class="subscribe_off" id="headingOne">
                                         <a href="javascript: void(0)" style="color: #fb2626">
                                             <div data-toggle="collapse" data-target="#collapse<%= t.id %>" aria-expanded="true" aria-controls="collapse<%= t.id %>">
-                                                <i class="fas fa-bell"></i> 구독신청
+                                                <i class="far fa-bell"></i> 구독신청
                                             </div>
                                         </a>
                                     </div>
@@ -90,7 +90,7 @@
                     
                     <% Subscribe.all.each do |k| %>
                         <% if (k.post_id == t.id) && (k.user_id == current_user.id) && (k.switch == true) %>
-                            <div class="accordion" id="accordion<%= t.id %>" style="width: 380px; margin-left: -22px; position: relative; z-index: 2;">
+                            <div class="accordion" id="accordion<%= t.id %>" style="width: 100%; margin-left: -22px; position: relative; z-index: 2;">
                                 <div>
                                     <div class="subscribe_on" id="headingOne">
                                         <a href="javascript: void(0)" class="text-none">
