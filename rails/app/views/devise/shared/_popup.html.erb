@@ -5,14 +5,16 @@
             <br/>
             정보를 원하는 사이트를 입력해주세요
         </h1>
-        <input class="url" type="text" placeholder="URL" />
-        
-        <div class="modal-bottom">
-            <h2>사이트 내 제목을 적어주세요!</h2>
-            <h3>이 제목들을 해당 사이트 정보분석의 베이스가 됩니다.</h3>
-            <input class="dumy-title-1" type="text" placeholder="제목"  />
-            <input class="dumy-title-2" type="text" placeholder="제목"  />
-            <button class="dumy-btn">OK</button>
-        </div>
+        <form action="https://crawling-server-alreayback.c9users.io/?url$str1$str2" method="get">
+            <div style="text-align: center"><input class="url" type="text" name="url" placeholder="URL"/></div>
+            
+            <div class="modal-bottom">
+                <h2>사이트 내 제목을 적어주세요!</h2>
+                <h3>이 제목들을 해당 사이트 정보분석의 베이스가 됩니다.</h3>
+                <input class="dumy-title-1" type="text" name="str1" placeholder="제목"  />
+                <input class="dumy-title-2" type="text" name="str2" placeholder="제목"  />
+                <input type="submit" class="dumy-btn" value="OK!">
+            </div>
+        </form>
     </div>
 </div>

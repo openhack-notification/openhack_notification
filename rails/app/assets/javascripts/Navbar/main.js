@@ -216,11 +216,11 @@ function onClickModalBack() {
 }
 
 function onClickSearchButton() {
-  document.querySelector(`.search-btn`).addEventListener(`click`, event => {
-    event.stopPropagation();
+  document.body.addEventListener(`click`, event => {
+    const target = event.target;
     
-    if(event.target.classList.contains(`search-btn`)) {
+    if(event.target.closest(`.empty-message`)) {
       document.querySelector(`.modal-wrap`).style.display = `flex`;
     }
-  });
+  }, false);
 }

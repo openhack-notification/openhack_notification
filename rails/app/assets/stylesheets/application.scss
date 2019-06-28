@@ -16,6 +16,37 @@
   /* 폰트 */ 
   @font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal; }
   
+  .input_noborder_white {
+    border-top: 0px;
+    border-bottom: 3px solid #ff4555;
+    border-left: 0px;
+    border-right: 0px;
+    font-size: 40px;
+    width: 100%;
+    height: 60px;
+  }
+  
+  .search-univ {
+    list-style-type: none;
+    padding: 10px;
+    background-color: #f7f7f7;
+    text-align: left;
+  }
+  
+  .search-univ > a {
+    color: black;
+  }
+  
+  .search-univ:hover {
+      list-style-type: none;
+      color: white;
+      background-color: #ff4555;
+  }
+  
+  .search-univ > a:hover {
+    color: white;
+  }
+  
   .font-coredream {
     font-family: 'S-CoreDream-2ExtraLight'
   }
