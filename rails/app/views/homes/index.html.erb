@@ -4,15 +4,70 @@
             이제, 즐겨찾기 말고
             <br/>
             <strong class="search-section-subtitle">야! 떳다</strong>
+        
+            <div class="row" id="scrollable-dropdown-menu" style="margin-top: 50px">
+                <div class="main-univ_search col-9 col-sm-10 col-md-11" style="z-index: 100; width: 500px;">
+                  <%= text_field_tag(:search_univ, nil, class: "typeahead input_noborder_white", id: "input_form", placeholder: "어떤 사이트를 찾으시나요?", style: "width: 100%; color: black; font-size: 20px;") %>
+                  
+                  <!-- Typed.js List -->
+                  <div style="width: 120%; margin-top: -55px;">
+                    <span id="main_typed" class="typeahead input_noborder_white tt-input" style="color: black; position: relative; vertical-align: top; background-color: transparent;"></span>
+                  </div>
+                </div>
+                
+                <div class="col-3 col-sm-2 col-md-1" style="margin-top: 5px; text-align: left; z-index: 100">
+                  <img src="/images/meg.svg" width="35" height="35" style="margin-left: -65px; margin-top: -10px;"/>
+                </div>
+            </div>
+            
         </h1>
         
-        <div class="search-wrap">
-            <input type="text" class="search-input-text" placeholder="어떤 사이트를 찾으시나요?" />
-            <img class="search-btn" src="/images/meg.svg" width="35" height="35" />
-        </div>
+        <!--<div class="search-wrap">-->
+        <!--    <input type="text" class="search-input-text" placeholder="어떤 사이트를 찾으시나요?" />-->
+        <!--    <img class="search-btn" src="/images/meg.svg" width="35" height="35" />-->
+        <!--</div>-->
     </section>
     <nav class="user-sidebar">
       <%= render "devise/shared/sidebar" %>
     </nav>
 </main>
 <%= render "devise/shared/popup" %>
+
+<!--<script src="/js/typeahead.js"></script>-->
+
+<script>
+    var source = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('id', 'title'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    /* local: links */
+    prefetch: {
+      url: '/bulletins.json',
+      ttl: 0
+    }    
+});
+source.initialize();
+
+$('#scrollable-dropdown-menu .typeahead').typeahead(null, {
+    displayKey: 'title',
+    limit: 5,
+    source: source.ttAdapter(),
+    templates: {
+        empty: [
+          '<div class="empty-message">',
+          '해당 사이트는 없습니다.',
+          '<div style="font-size: 25px; margin-top: 10px;"><i class="fas fa-mouse-pointer"></i> 사이트 등록하러 가기</div>',
+          '</div>'
+        ].join('\n'),
+        suggestion: Handlebars.compile
+        (
+            '<li class="search-univ">' +
+            '<a href="/bulletins/{{id}}/posts" style="text-decoration: none;">' +
+            '<div>' +
+            '<div class="etc"><span style="font-size: 30px;">{{title}}</span></div>' +
+            '</div>' +
+            '</a>' +
+            '</li>'
+        )
+    }
+});
+</script>
