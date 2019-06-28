@@ -4,9 +4,14 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from optparse import OptionParser
 from urllib.parse import urlparse
 import urllib
+import copy
 
 def crawling(url,str1,str2):
     crawler.start()
+    print("hi")
+    print(url)
+    print(str1)
+    print(str2)
     
     rule, site_title, domain_title = crawler.find_board_info(url, str1, str2)
     print("rule: ", rule, "\nsite_title : ", site_title, "\ndomain_title: ", domain_title)
@@ -39,13 +44,40 @@ class MyHandler(BaseHTTPRequestHandler):
         self.wfile.write(message.encode('utf-8'))
         if(parsed_path.query):
             s = parsed_path.query
-            out = urllib.parse.unquote(s).split('$')
-            crawling(out[0],out[1],out[2])
-        print("finishing crawling")
+            out = urllib.parse.unquote(s).split('&')
+            
+            
+            
+            #out = urllib.parse.unquote(s)
+            
+            
+            #index1 = out.find("?url=")+5
+            #index2 = out.find("&str1=")+6
+           #index3 = out.find("&str2=")+6
+
+           # _url = out[index1:index2-6]
+           # _str1 = out[index2:index3-6]
+           # _str2 = out[index3:]
+           #
+            #_str1 = _str1.replace('+', ' ')
+            #_str2 = _str2.replace('+', ' ')
+            
+           # url = copy.deepcopy(_url)
+           # str1 = copy.deepcopy(_str1).strip()
+           # str2 = copy.deepcopy(_str2).strip()
+            url = copy.deepcopy(out[0][4:])
+            str1 = copy.deepcopy(out[1][5:15].replace('+',' '))
+            str2 = copy.deepcopy(out[2][5:15].replace('+',' '))
+            print(url)
+            print(str1)
+            print(str2)
+            crawling(url,str1,str2)
+        print("crawling and database inserting completed. wait for request...")
         return None
 
 
 s=HTTPServer(('0.0.0.0',8080),MyHandler)
+print("wait for request...")
 s.serve_forever()
 
 

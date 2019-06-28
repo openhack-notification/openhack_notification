@@ -10,6 +10,7 @@ def start():
     options.add_argument("disable-gpu")
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
     driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", chrome_options=options)
+
     #driver = webdriver.Chrome('chromedriver', chrome_options=options)
     driver.implicitly_wait(3)
 
@@ -77,14 +78,7 @@ def crawl(url, rule):
         links.append(i.get_attribute('href'))
 
     # 글자가 들어있는 태그에 href에 url이 들어있지 않은 경우 like js or 상위 태그에 href속성
-    if links is None or links[0] is None or links[0][:4] != "http":
-        links = []
-        for i in range(len(driver.find_elements_by_xpath(rule))):
-            driver.implicitly_wait(3)
-            driver.find_elements_by_xpath(rule)[i].click()
-            links.append(driver.current_url)
-            driver.back()
-            # driver.execute_script("window.history.go(-1)")
+    
 
     return posts, links
 
