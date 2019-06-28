@@ -1,26 +1,26 @@
 *.rbc
 capybara-*.html
 .rspec
-/log
-/tmp/*
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/public/system
-/public/assets/*
-/public/uploads/*
-/coverage/
-/spec/tmp
+rails/log
+rails/tmp/*
+rails/db/*.sqlite3
+rails/db/*.sqlite3-journal
+rails/public/system
+rails/public/assets/*
+rails/public/uploads/*
+rails/coverage/
+rails/spec/tmp
 *.orig
 rerun.txt
 pickle-email-*.html
 
 #Ignore all .c9 specific files
 /.c9/
-/solr/
-/elasticsearch-2.2.0.deb
+rails/solr/
+rails/elasticsearch-2.2.0.deb
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
-config/initializers/secret_token.rb
+rails/config/initializers/secret_token.rb
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml
@@ -30,8 +30,8 @@ config/initializers/secret_token.rb
 .env
 
 ## Environment normalization:
-/.bundle
-/vendor/bundle
+rails/.bundle
+rails/vendor/bundle
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
@@ -50,4 +50,5 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
-/config/application.yml
+rails/config/application.yml
+rails/tmp/cache/*

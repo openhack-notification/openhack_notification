@@ -5,6 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
     create_table :users do |t|
       ## Customized
       t.string :nickname
+      t.integer :phone_number
       t.boolean :admin, default: false
       
       ## Database authenticatable

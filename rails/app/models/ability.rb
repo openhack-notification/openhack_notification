@@ -12,6 +12,7 @@ class Ability
     elsif user.has_role? :normal
       #일반 회원 : 허용 목록
       can [:index, :show], AllNotice
+      can [:index, :show, :new, :create, :upvote, :downvote], Bulletin
       can [:index, :show, :new, :create, :upvote, :downvote], Post
       can [:edit, :update, :destroy], Post, user_id: user.id
       can [:index, :show, :new, :create], Comment
@@ -19,7 +20,7 @@ class Ability
       can [:destroy], Message, user_id: user.id
       
       #일반 회원 : 비허용 목록
-      cannot [:index, :show, :new, :create, :edit, :update, :destroy], Bulletin, user_id: user.id
+      cannot [:show, :new, :create, :edit, :update, :destroy], Bulletin, user_id: user.id
       cannot [:new, :create, :edit, :update, :destroy], AllNotice, user_id: user.id
     
     elsif user.has_role? :block_yellow

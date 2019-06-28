@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_id: 1
+  user_id: 1
+  keyword_1: MyString
+  keyword_2: MyString
+  sms: false
+  mail: false
+  push: false
+
+two:
+  post_id: 1
+  user_id: 1
+  keyword_1: MyString
+  keyword_2: MyString
+  sms: false
+  mail: false
+  push: false
