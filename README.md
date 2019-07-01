@@ -21,6 +21,8 @@
 |         **3. 검색 결과 출력 및 정기 안내 액션 추가**         |      |
 | <img src="https://user-images.githubusercontent.com/26294469/60403868-aa5fe600-9bdd-11e9-8a9e-0299249f5a06.png"> |      |
 
+* 실제 웹페이지 사진으로 스크린샷을 찍었습니다.
+
 ## :computer: 기술 스택
 
 <img src="https://user-images.githubusercontent.com/26294469/60403849-7be20b00-9bdd-11e9-9138-b61ebd71bd9d.png">
