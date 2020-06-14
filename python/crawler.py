@@ -9,15 +9,16 @@ def start():
     options.add_argument('window-size=1920x1080')
     options.add_argument("disable-gpu")
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
+
     driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver", chrome_options=options)
     #driver = webdriver.Chrome('chromedriver', chrome_options=options)
-    driver.implicitly_wait(3)
 
 
 def get_domain(url):
     extracted = tldextract.extract(url)
     domain = "{}.{}".format(extracted.domain, extracted.suffix)
     return domain
+
 
 
 def get_rule(a, b):
@@ -28,6 +29,48 @@ def get_rule(a, b):
         else:
             rule = rule[:-1]
             rule += a[i+2:]
+            
+def get_element_by_text(str):
+    element = driver.find_elements_by_xpath("//*[contains(text(), '" + str + "')]")
+    if not len(element):
+        print("Can not Find Element")
+        return None
+    else:
+        return element[0]
+
+
+def get_xpath_by_element(web_element):
+    xpath = driver.execute_script("""gPt=function(c){
+                                     if(c.id!==''){
+                                         return'id("'+c.id+'")'
+                                     } 
+                                     if(c===document.body){
+                                         return c.tagName
+                                     }
+                                     var a=0;
+                                     var e=c.parentNode.childNodes;
+                                     for(var b=0;b<e.length;b++){
+                                         var d=e[b];
+                                         if(d===c){
+                                             return gPt(c.parentNode)+'/'+c.tagName+'['+(a+1)+']'
+                                         }
+                                         if(d.nodeType===1&&d.tagName===c.tagName){
+                                             a++
+                                         }
+                                     }
+                                 };
+                                 return gPt(arguments[0]).toLowerCase();""", web_element)
+    return xpath
+
+
+def get_rule(xpath1, xpath2):
+    rule = ""
+    for i in range(len(xpath1)):
+        if xpath1[i] == xpath2[i]:
+            rule += xpath1[i]
+        else:
+            rule = rule[:-1]
+            rule += xpath1[i+2:]
             # print("found!", rule)
             return rule
     print("Error: Can not find rule")
@@ -38,13 +81,9 @@ def crawl(url, rule):
     posts = []
     links = []
     driver.get(url)
-    
-    for i in driver.find_elements_by_xpath(str(rule)):
-        posts.append(i.text)
-        links.append(i.get_attribute('href'))
 
-    # 글자가 들어있는 태그에 href에 url이 들어있지 않은 경우 like js or 상위 태그에 href속성
     if links is None and links[0][:4] != "http":
+
         links = []
         for i in range(len(driver.find_elements_by_xpath(rule))):
             driver.implicitly_wait(3)
@@ -86,6 +125,20 @@ def find_board_info(url, str1, str2):
     element1 = driver.find_elements_by_xpath("//*[contains(text(), '" + str1 + "')]")[0]
     element2 = driver.find_elements_by_xpath("//*[contains(text(), '" + str2 + "')]")[0]
 
+def find_board_info(url, str1, str2):
+    driver.get(url)
+
+    tmp = get_element_by_text(str1)
+    if tmp is None:
+        return None, None, None
+    element1 = tmp
+
+    tmp = get_element_by_text(str2)
+    if tmp is None:
+        return None, None, None
+    element2 = tmp
+'''
+
     xpath1 = get_xpath_by_element(element1)
     xpath2 = get_xpath_by_element(element2)
 
@@ -108,8 +161,10 @@ if __name__ == '__main__':
     start()
 
     rule, site_title, domain_title = find_board_info(url, str1, str2)
+'''
 
     print("rule: ", rule, "\nsite_title", site_title, "\ndomain_title: ", domain_title)
+
 
     posts, links = crawl(url, rule)
 

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Crawl Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Is message send</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @crawl_lists.each do |crawl_list| %>
+      <tr>
+        <td><%= crawl_list.title %></td>
+        <td><%= crawl_list.is_message_send %></td>
+        <td><%#= link_to 'Show', crawl_list %></td>
+        <td><%#= link_to 'Edit', edit_crawl_list_path(crawl_list) %></td>
+        <td><%#= link_to 'Destroy', crawl_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '글쓰기', (@post.present? ?  new_post_crawl_list_path(@post) : new_crawl_list_path) %>

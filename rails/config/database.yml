@@ -10,8 +10,15 @@ default: &default
   timeout: 5000
  
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: postgresql
+  host: <%= ENV["RDS_End_Point"] %>
+  port: 5432
+  encoding: utf8
+  sslmode: allow
+  database: <%= ENV["DB_NAME"] %>_development
+  pool: 5
+  username: <%= ENV["RDS_MASTER_NAME"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
  
 # 만약 development 모드에서도 postgresql DB를 쓸 경우 아래 '#' 주석처리 해제.
 # development:
@@ -27,26 +34,29 @@ development:
  
 test:
   adapter: postgresql
-  host: localhost
+  host: <%= ENV["RDS_End_Point"] %>
+  port: 5432
   encoding: utf8
+  sslmode: allow
   database: <%= ENV["DB_NAME"] %>_test
-  username: <%= ENV["DB_NAME"] %>
-  password: <%= ENV["DB_PASSWD"] %>
   pool: 5
+  username: <%= ENV["RDS_MASTER_NAME"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
  
 ## AWS 서버 설정
-# production:
-#   adapter: postgresql
-#   host: localhost
-#   encoding: utf8
-#   sslmode: allow
-#   database: <%= ENV["DB_NAME"] %>_production
-#   pool: 5
-#   username: <%= ENV["DB_NAME"] %>
-#   password: <%= ENV["DB_PASSWD"] %>
+production:
+  adapter: postgresql
+  host: <%= ENV["RDS_End_Point"] %>
+  port: 5432
+  encoding: utf8
+  sslmode: allow
+  database: <%= ENV["DB_NAME"] %>_development
+  pool: 5
+  username: <%= ENV["RDS_MASTER_NAME"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
 
 ## Heroku 서버 설정
-production:
-  <<: *default
-  adapter: postgresql
-  encoding: unicode
+# production:
+#   <<: *default
+#   adapter: postgresql
+#   encoding: unicode
