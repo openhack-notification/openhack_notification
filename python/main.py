@@ -18,11 +18,11 @@ def delete():
     conn.commit()
 
 def get_conn():
-    host="db-central-ydd.cp97brx4lcga.ap-northeast-2.rds.amazonaws.com"
-    port=5432
-    dbname="db-central-ydd_development"
-    user="ydd"
-    password="a1274821"
+    host=
+    port=
+    dbname=
+    user=
+    password=
     conn = psycopg2.connect("dbname={} user={} host={} password={}".format(dbname,user,host,password))
     return conn
 
